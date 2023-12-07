@@ -1,0 +1,7 @@
+.pwd label {
+    width: 100%;
+}
+
+.pwd label::after {
+    display: none;
+}

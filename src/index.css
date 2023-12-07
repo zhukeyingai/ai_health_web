@@ -1,0 +1,147 @@
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  background-color: #f2f3f5;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  max-width: 6px;
+  max-height: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: tgba(0, 0, 0, 0.1);
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+img,
+svg,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: unset;
+  vertical-align: unset;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+/* 封装一些 tailwind class*/
+@layer components {
+
+  /* 占满容器 */
+  .tw-full {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* 文字超长省略 */
+  .tw-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* flex水平垂直居中 */
+  .tw-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* border */
+  .tw-border-normal {
+    border: 1px solid rgb(238, 238, 238);
+  }
+
+  /* 文字三行省略 */
+  .tw-line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+  }
+
+  /* 文字五行省略 */
+  .tw-line-clamp-5 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    text-overflow: ellipsis;
+  }
+}
+
+/* 输入框 */
+.ant-input-affix-wrapper:focus-within {
+  border-color: #9ad14b;
+  box-shadow: 0 0 0 2px rgba(148, 255, 4, 0.1);
+}
+
+.ant-input-affix-wrapper:hover {
+  border-color: #b2d482;
+}
+
+/* button-primary */
+.ant-btn-primary {
+  background: #9ad14b;
+  box-shadow: 0 0 0 2px rgba(148, 255, 4, 0.1);
+}
+
+.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+  background: #b2d482;
+}
+
+/* button-link */
+.ant-btn-link {
+  color: #9ad14b;
+}
+
+.ant-btn-link:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #b2d482;
+}
+
+/* menu */
+.ant-menu-light.ant-menu-root.ant-menu-vertical {
+  border-inline-end: none;
+}
+
+.ant-menu-light .ant-menu-item-selected {
+  color: #78ae2c;
+  background-color: #e9f6dc;
+}
+
+.ant-menu-light:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):active {
+  background-color: #e9f6dc;
+}
