@@ -1,26 +1,32 @@
 import { useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import SignUp from "../pages/SignUp";
+import Register from "../pages/Auth/Register";
+import Login from "../pages/Auth/Login";
+import { TOKEN_KEY } from "../constant/localStorageKey";
 import Layout from "./layout";
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  // 判断是否登录，没有登录跳转到登录页
-  // 判断在登录页是否已登录，已登录则跳转主页
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const currentToken = localStorage.getItem(TOKEN_KEY);
     const isHomePage = location.pathname === "/";
-    if (!token) {
-      navigate("/login");
-    } else if (token && isHomePage) {
+    if (!currentToken) {
+      if (location.pathname === "/login") {
+        navigate("/login");
+      } else {
+        navigate("/register");
+      }
+    } else if (currentToken && isHomePage) {
       navigate("/home");
     }
   }, [navigate, location.pathname]);
 
   return (
     <Routes>
-      <Route path="/login" element={<SignUp />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
       <Route path="*" element={<Layout />} />
     </Routes>
   );

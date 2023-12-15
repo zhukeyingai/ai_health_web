@@ -9,7 +9,7 @@ export default defineConfig({
     port: 3100,
     proxy: {
       ["/workbench"]: {
-        target: "http://localhost:3000/",
+        target: "http://localhost:3203/",
         changeOrigin: true,
       },
     },

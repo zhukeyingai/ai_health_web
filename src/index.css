@@ -145,3 +145,12 @@ p {
 .ant-menu-light:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):active {
   background-color: #e9f6dc;
 }
+
+/* collapsed */
+.ant-menu-inline-collapsed-tooltip {
+  display: none;
+}
+
+.ant-dropdown-menu-inline-collapsed-tooltip {
+  display: none;
+}

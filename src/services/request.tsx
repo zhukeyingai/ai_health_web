@@ -26,7 +26,7 @@ const post = (api: string, params?: any, config?: any) => {
     instance
       .post(api, params, config)
       .then((res) => {
-        if (res.status !== 200) {
+        if (res.status !== 201) {
           throw res;
         }
         resolve(res.data);
