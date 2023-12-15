@@ -1,13 +1,11 @@
 import { memo, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { NavList } from "../../constant/nav";
-import AiHealthSvg from "../../assets/aiHealthSvg.svg";
 import { Menu, Tooltip } from "antd";
+import AiHealthSvg from "../../assets/aiHealthSvg.svg";
+import { NavList } from "../../constant/nav";
 
 const { Item } = Menu;
-const LogoImg = (
-  <img src={AiHealthSvg} className="w-8 h-8 cursor-pointer" />
-);
+const LogoImg = <img src={AiHealthSvg} className="w-8 h-8 cursor-pointer" />;
 
 interface NavProps {
   collapsed: boolean;
@@ -31,6 +29,7 @@ const Nav: React.FC<NavProps> = memo(({ collapsed }) => {
               <Tooltip
                 title={collapsed ? item.name : null}
                 key={item.path}
+                placement="right"
               >
                 <div className="flex items-center">
                   <span>{item.icon}</span>
