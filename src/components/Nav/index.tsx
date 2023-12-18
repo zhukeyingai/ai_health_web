@@ -47,7 +47,9 @@ const Nav: React.FC<NavProps> = memo(({ collapsed }) => {
       <div className="flex justify-center px-2 py-4" onClick={goHome}>
         {LogoImg}
       </div>
-      <div className="h-[calc(100%-193px)] overflow-auto">{menu}</div>
+      <div className="h-[calc(100%-193px)] overflow-auto font-medium">
+        {menu}
+      </div>
     </>
   ) : (
     <>
@@ -57,7 +59,9 @@ const Nav: React.FC<NavProps> = memo(({ collapsed }) => {
           AI Health
         </div>
       </div>
-      <div className="h-[calc(100%-112.5px)] overflow-auto">{menu}</div>
+      <div className="h-[calc(100%-112.5px)] overflow-auto font-medium">
+        {menu}
+      </div>
     </>
   );
 });

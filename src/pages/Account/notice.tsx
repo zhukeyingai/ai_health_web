@@ -14,9 +14,9 @@ const Notice: React.FC = () => {
             如果我忘记输入日记详细信息，请通过电子邮件向我发送提醒。
           </div>
         </div>
-        <div className="ml-5">
+        <div className="ml-5 flex">
           <TimePicker
-            className="mr-3 w-[112px]"
+            className="mr-3 w-[112px] h-[22px]"
             size="small"
             defaultValue={dayjs("12:08", "HH:mm")}
             placeholder="请选择时间"

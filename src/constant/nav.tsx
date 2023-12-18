@@ -14,7 +14,7 @@ export const NavList = [
   },
   {
     path: PATH_MAP.INFO,
-    name: "个人中心",
+    name: "个人信息",
     icon: <UserOutlined />,
   },
   {

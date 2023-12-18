@@ -9,7 +9,7 @@ import "../index.css";
 
 const { login } = authApi;
 
-const Auth: React.FC = () => {
+const Login: React.FC = () => {
   const navigate = useNavigate();
   const formRef = useRef<FormInstance>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -56,4 +56,4 @@ const Auth: React.FC = () => {
   );
 };
 
-export default Auth;
+export default Login;

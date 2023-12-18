@@ -57,7 +57,7 @@ const BottomInfo: React.FC<BottomInfoProps> = memo(
                       }}
                     >
                       <UserOutlined className="mr-1.5" />
-                      个人中心
+                      个人信息
                     </div>
                   ),
                 },

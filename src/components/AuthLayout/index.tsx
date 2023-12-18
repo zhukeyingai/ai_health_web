@@ -8,7 +8,7 @@ interface AuthLayoutProps {
   content: ReactNode;
 }
 
-const authLayout: React.FC<AuthLayoutProps> = ({ content }) => {
+const AuthLayout: React.FC<AuthLayoutProps> = ({ content }) => {
   return (
     <div
       className="flex flex-col items-center justify-center h-full overflow-aut"
@@ -34,4 +34,4 @@ const authLayout: React.FC<AuthLayoutProps> = ({ content }) => {
   );
 };
 
-export default authLayout;
+export default AuthLayout;

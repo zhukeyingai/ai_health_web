@@ -10,6 +10,7 @@ import { UserInfo } from "../../interface/user";
 import DataAccount from "./dataAccount";
 import Notice from "./notice";
 import Privacy from "./privacy";
+import Profile from "./profile";
 import "./index.css";
 
 const { deleteUser, getUserInfo } = authApi;
@@ -139,21 +140,9 @@ const Account: React.FC = () => {
 
   return (
     <Spin wrapperClassName="account" spinning={isLoading}>
-      <div className="w-[240px] flex-shrink-0">
+      <div className="w-[260px] flex-shrink-0">
         {genMe}
-        <CommonCard className="mt-4">
-          <div className="flex justify-center">
-            <div className="mr-6 flex flex-col items-center">
-              <div>关注了</div>
-              <div className="mt-1">0</div>
-            </div>
-            <Divider type="vertical" className="top-[7px] h-[26.2px]" />
-            <div className="ml-6 flex flex-col items-center">
-              <div>关注者</div>
-              <div className="mt-1">0</div>
-            </div>
-          </div>
-        </CommonCard>
+        <Profile userInfo={userInfo}/>
       </div>
       <div className="ml-4 flex-grow flex-shrink-0">
         {genAccount}
