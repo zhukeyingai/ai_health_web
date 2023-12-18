@@ -1,7 +1,7 @@
 import React, { ReactNode, memo } from "react";
 
 interface CommonCardProps {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 }
 

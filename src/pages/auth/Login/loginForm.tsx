@@ -4,7 +4,7 @@ import {
   validateEmail,
   validatePassword,
 } from "../../../common/utils/validator";
-import { UserInfo } from "../../../interface/uesr";
+import { UserInfo } from "../../../interface/user";
 
 const FormItem = Form.Item;
 

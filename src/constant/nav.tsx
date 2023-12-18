@@ -19,7 +19,7 @@ export const NavList = [
   },
   {
     path: PATH_MAP.ACCOUNT,
-    name: "账号设置",
+    name: "个人设置",
     icon: <SettingOutlined />,
   },
 ];

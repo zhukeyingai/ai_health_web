@@ -1,5 +1,5 @@
 import request from "./request";
-import { UserInfo } from "../interface/uesr";
+import { UserInfo } from "../interface/user";
 
 export default {
   // 注册

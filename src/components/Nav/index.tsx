@@ -14,7 +14,6 @@ interface NavProps {
 const Nav: React.FC<NavProps> = memo(({ collapsed }) => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const goHome = () => navigate("/home");
 
   const menu = useMemo(() => {
@@ -48,7 +47,7 @@ const Nav: React.FC<NavProps> = memo(({ collapsed }) => {
       <div className="flex justify-center px-2 py-4" onClick={goHome}>
         {LogoImg}
       </div>
-      {menu}
+      <div className="h-[calc(100%-193px)] overflow-auto">{menu}</div>
     </>
   ) : (
     <>
@@ -58,7 +57,7 @@ const Nav: React.FC<NavProps> = memo(({ collapsed }) => {
           AI Health
         </div>
       </div>
-      {menu}
+      <div className="h-[calc(100%-112.5px)] overflow-auto">{menu}</div>
     </>
   );
 });

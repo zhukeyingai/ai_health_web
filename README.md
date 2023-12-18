@@ -64,3 +64,5 @@ pnpm build
   - `pnpm i axios`
 - 安装 react route
   - `pnpm i react-router-dom`
+- 安装 dayjs
+  - `pnpm i dayjs`

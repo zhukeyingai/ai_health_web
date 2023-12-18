@@ -17,6 +17,9 @@ dependencies:
   axios:
     specifier: ^1.6.2
     version: 1.6.2
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
   email-validator:
     specifier: ^2.0.4
     version: 2.0.4

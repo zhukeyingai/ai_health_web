@@ -53,7 +53,7 @@ const BottomInfo: React.FC<BottomInfoProps> = memo(
                   label: (
                     <div
                       onClick={() => {
-                        navigate("/profile");
+                        navigate("/info");
                       }}
                     >
                       <UserOutlined className="mr-1.5" />

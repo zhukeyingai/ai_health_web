@@ -1,13 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Spin, message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Spin, Button, Avatar, Divider, message } from "antd";
+import { UserOutlined, EditOutlined } from "@ant-design/icons";
+import dayjs from "dayjs";
 import CommonCard from "../../components/CommonCard";
 import { USER_ID_KEY } from "../../constant/localStorageKey";
 import authApi from "../../services/auth";
-import { UserInfo } from "../../interface/uesr";
+import { UserInfo } from "../../interface/user";
+import DataAccount from "./dataAccount";
+import Notice from "./notice";
+import Privacy from "./privacy";
+import "./index.css";
 
-const { getUserInfo } = authApi;
+const { deleteUser, getUserInfo } = authApi;
 
 const Account: React.FC = () => {
+  const navigate = useNavigate();
   const [userId, setUserId] = useState<string | null>(null);
   const [userInfo, setUserInfo] = useState<UserInfo>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -40,37 +48,119 @@ const Account: React.FC = () => {
     }
   };
 
-  const genTitle = useMemo(() => {
+  const onDelete = () => {
+    if (userId) {
+      setIsLoading(true);
+      deleteUser({ user_id: userId })
+        .then(() => {
+          message.success("注销账号成功");
+          localStorage.clear();
+          navigate("/register");
+        })
+        .catch((err) => {
+          message.error(`注销账号失败:${err}`);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  };
+
+  const genMe = useMemo(() => {
     if (userInfo) {
-      const { user_name } = userInfo;
+      const { avatar_url, user_name, created_time } = userInfo;
+      const days = dayjs().diff(dayjs(created_time), "day");
+      const hours = dayjs().diff(dayjs(created_time).add(days, "day"), "hour");
+      const minutes = dayjs().diff(
+        dayjs(created_time).add(days, "day").add(hours, "hour"),
+        "minute"
+      );
+      let inner: any = null;
+      if (avatar_url) {
+        inner = <img src={avatar_url} />;
+      } else {
+        inner = <UserOutlined />;
+      }
       return (
-        <CommonCard>
-          <div>
-            你好，<span className="text-[#78ae2c]">{user_name}</span>
+        <div className="mt-4 flex flex-col items-center">
+          <Avatar className="mb-3" shape="square" size={60}>
+            {inner}
+          </Avatar>
+          <div className="mb-2 text-base text-black">{user_name}</div>
+          <div className="text-[#78ae2c] text-xs">
+            成为会员：
+            {`${days} 天 ${hours} 小时 ${minutes} 分`}
           </div>
-        </CommonCard>
+        </div>
       );
     }
   }, [userInfo]);
 
   const genAccount = useMemo(() => {
     if (userInfo) {
-      const { email, password } = userInfo;
-      console.log("@email", email);
-      console.log("@password", password);
+      const { email } = userInfo;
       return (
-        <CommonCard className="mt-4">
-          <div>安全邮箱</div>
-          <div>账号密码</div>
+        <CommonCard>
+          <div className="text-base font-semibold">账号信息</div>
+          <Divider />
+          <div className="text-gray-500 flex font-medium justify-between">
+            <div className="flex items-center">
+              <span className="w-[110px]">电子邮箱</span>
+              <span className="text-black">{email}</span>
+            </div>
+            <Button
+              className="p-0 text-xs ml-5"
+              type="link"
+              onClick={() => console.log("@编辑电子邮箱")}
+            >
+              <EditOutlined />
+              编辑
+            </Button>
+          </div>
+          <Divider />
+          <div className="text-gray-500 flex font-medium justify-between">
+            <div className="flex items-center">
+              <span className="w-[110px]">密码</span>
+              <span className="text-black">**********</span>
+            </div>
+            <Button
+              className="p-0 text-xs ml-5"
+              type="link"
+              onClick={() => console.log("@编辑密码")}
+            >
+              <EditOutlined />
+              编辑
+            </Button>
+          </div>
         </CommonCard>
       );
     }
   }, [userInfo]);
 
   return (
-    <Spin wrapperClassName="h-full" spinning={isLoading}>
-      {genTitle}
-      {genAccount}
+    <Spin wrapperClassName="account" spinning={isLoading}>
+      <div className="w-[240px] flex-shrink-0">
+        {genMe}
+        <CommonCard className="mt-4">
+          <div className="flex justify-center">
+            <div className="mr-6 flex flex-col items-center">
+              <div>关注了</div>
+              <div className="mt-1">0</div>
+            </div>
+            <Divider type="vertical" className="top-[7px] h-[26.2px]" />
+            <div className="ml-6 flex flex-col items-center">
+              <div>关注者</div>
+              <div className="mt-1">0</div>
+            </div>
+          </div>
+        </CommonCard>
+      </div>
+      <div className="ml-4 flex-grow flex-shrink-0">
+        {genAccount}
+        <Notice />
+        <Privacy />
+        <DataAccount onDelete={onDelete} />
+      </div>
     </Spin>
   );
 };
