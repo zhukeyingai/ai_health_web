@@ -1,8 +1,9 @@
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, SettingOutlined } from "@ant-design/icons";
 
 export const PATH_MAP = {
   HOME: "/home",
-  OTHER: "/other"
+  ACCOUNT: "/account",
+  INFO: "/info",
 };
 
 export const NavList = [
@@ -12,8 +13,13 @@ export const NavList = [
     icon: <HomeOutlined />,
   },
   {
-    path: PATH_MAP.OTHER,
-    name: "其他",
-    icon: <HomeOutlined />,
+    path: PATH_MAP.INFO,
+    name: "个人中心",
+    icon: <UserOutlined />,
+  },
+  {
+    path: PATH_MAP.ACCOUNT,
+    name: "账号设置",
+    icon: <SettingOutlined />,
   },
 ];

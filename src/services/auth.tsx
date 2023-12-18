@@ -18,4 +18,8 @@ export default {
   async deleteUser(data: Pick<UserInfo, "user_id">) {
     return await request.post("/auth/deleteUser", data);
   },
+  // 用户信息
+  async getUserInfo(data: Pick<UserInfo, "user_id">) {
+    return await request.get("/user/getUserInfo", { params: data });
+  },
 };
