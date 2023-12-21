@@ -5,12 +5,13 @@ import { UserOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import CommonCard from "../../components/CommonCard";
 import { USER_ID_KEY } from "../../constant/localStorageKey";
-import authApi from "../../services/auth";
 import { UserInfo } from "../../interface/user";
+import authApi from "../../services/auth";
 import DataAccount from "./dataAccount";
 import Notice from "./notice";
 import Privacy from "./privacy";
 import Profile from "./profile";
+import FQA from "./FQA";
 import "./index.css";
 
 const { deleteUser, getUserInfo } = authApi;
@@ -76,17 +77,23 @@ const Account: React.FC = () => {
         dayjs(created_time).add(days, "day").add(hours, "hour"),
         "minute"
       );
-      let inner: any = null;
-      if (avatar_url) {
-        inner = <img src={avatar_url} />;
-      } else {
-        inner = <UserOutlined />;
-      }
       return (
         <div className="mt-4 flex flex-col items-center">
-          <Avatar className="mb-3" shape="square" size={60}>
-            {inner}
-          </Avatar>
+          {avatar_url ? (
+            <Avatar
+              className="mb-3"
+              shape="square"
+              size={60}
+              src={userInfo?.avatar_url}
+            />
+          ) : (
+            <Avatar
+              className="mb-3"
+              shape="square"
+              size={60}
+              icon={<UserOutlined />}
+            />
+          )}
           <div className="mb-2 text-base text-black">{user_name}</div>
           <div className="text-[#78ae2c] text-xs">
             成为会员：
@@ -142,7 +149,8 @@ const Account: React.FC = () => {
     <Spin wrapperClassName="account" spinning={isLoading}>
       <div className="w-[260px] flex-shrink-0">
         {genMe}
-        <Profile userInfo={userInfo}/>
+        <Profile userInfo={userInfo} />
+        <FQA />
       </div>
       <div className="ml-4 flex-grow flex-shrink-0">
         {genAccount}

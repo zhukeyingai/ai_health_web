@@ -19,18 +19,24 @@ const Profile: React.FC<ProfileProps> = ({ userInfo }) => {
     <>
       <CommonCard className="mt-4">
         <div className="flex font-medium justify-center">
-          <div className="mr-6 flex flex-col items-center cursor-pointer hover:text-[#9ad14b]">
+          <div
+            className="mr-6 flex flex-col items-center cursor-pointer hover:text-[#9ad14b]"
+            onClick={() => console.log("@关注了")}
+          >
             <div>关注了</div>
             <div className="mt-1">0</div>
           </div>
           <Divider type="vertical" className="top-[7px] h-[26.2px]" />
-          <div className="ml-6 flex flex-col items-center cursor-pointer hover:text-[#9ad14b]">
+          <div
+            className="ml-6 flex flex-col items-center cursor-pointer hover:text-[#9ad14b]"
+            onClick={() => console.log("@关注者")}
+          >
             <div>关注者</div>
             <div className="mt-1">0</div>
           </div>
         </div>
         <div
-          className="mt-4 py-2 rounded-lg bg-[#fef8ec] text-center cursor-pointer"
+          className="mt-4 py-2 rounded-lg bg-[#fef8ec] hover:bg-[#fdf5e4] text-center cursor-pointer"
           onClick={() => navigate("/info")}
         >
           编辑个人信息

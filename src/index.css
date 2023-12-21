@@ -31,7 +31,7 @@ body {
 
 *::-webkit-scrollbar-track {
   border-radius: 0;
-  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.1); */
 }
 
 #root {
@@ -54,6 +54,16 @@ object {
 p {
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+
+/* a */
+a {
+  color: #9ad14b;
+}
+
+a:hover {
+  color: #b2d482;
 }
 
 /* 封装一些 tailwind class*/
@@ -120,6 +130,15 @@ p {
 }
 
 .ant-input-affix-wrapper:hover {
+  border-color: #b2d482;
+}
+
+.ant-input:focus-within {
+  border-color: #9ad14b;
+  box-shadow: 0 0 0 2px rgba(148, 255, 4, 0.1);
+}
+
+.ant-input:hover {
   border-color: #b2d482;
 }
 
@@ -207,11 +226,7 @@ p {
   background: #e9f6dc;
 }
 
-/* a */
-a {
-  color: #9ad14b;
-}
-
-a:hover {
-  color: #b2d482;
+/* 日期选择器 */
+.ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background: #9ad14b;
 }
