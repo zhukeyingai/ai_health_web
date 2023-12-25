@@ -38,7 +38,7 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userInfo }) => {
   const [birthDate, setBirthDate] = useState<string>("");
 
   return (
-    <CommonCard className="m-2 p-6 min-w-[923px]">
+    <CommonCard>
       <Form
         form={form}
         layout="vertical"
@@ -158,9 +158,7 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userInfo }) => {
           <FormItem name="bmi"></FormItem> */}
       </Form>
       <div className="w-full flex justify-end">
-        <Button type="primary">
-          保存
-        </Button>
+        <Button type="primary">保存</Button>
       </div>
     </CommonCard>
   );

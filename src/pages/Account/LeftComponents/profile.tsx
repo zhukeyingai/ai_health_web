@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { Divider } from "antd";
-import Ip from "../../assets/ip.svg";
-import Sex from "../../assets/sex.svg";
-import Birthday from "../../assets/birthday.svg";
-import Profession from "../../assets/profession.svg";
-import CommonCard from "../../components/CommonCard";
-import { SEX_MAP } from "../../constant/user";
-import { UserInfo } from "../../interface/user";
+import Ip from "../../../assets/ip.svg";
+import Sex from "../../../assets/sex.svg";
+import Birthday from "../../../assets/birthday.svg";
+import Profession from "../../../assets/profession.svg";
+import CommonCard from "../../../components/CommonCard";
+import { SEX_MAP } from "../../../constant/user";
+import { UserInfo } from "../../../interface/user";
 
 interface ProfileProps {
   userInfo?: UserInfo;
@@ -43,8 +43,7 @@ const Profile: React.FC<ProfileProps> = ({ userInfo }) => {
         </div>
       </CommonCard>
       {userInfo && (
-        <CommonCard className="mt-4">
-          <div className="text-base font-semibold">个人简介</div>
+        <CommonCard className="mt-6" title="个人简介">
           <div className="mt-4 leading-5 flex items-center">
             <img className="h-4 w-4" src={Ip} />
             <span className="ml-2">

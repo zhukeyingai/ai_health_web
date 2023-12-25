@@ -4,6 +4,8 @@ import { USER_ID_KEY } from "../../constant/localStorageKey";
 import { UserInfo } from "../../interface/user";
 import authApi from "../../services/auth";
 import DetailProfile from "./detailProfile";
+import EnergyBurned from "./energyBurned";
+import Target from "./target";
 import "./index.css";
 
 const { getUserInfo } = authApi;
@@ -43,7 +45,11 @@ const Info: React.FC = () => {
 
   return (
     <Spin spinning={isLoading}>
-      {userInfo && <DetailProfile userInfo={userInfo} />}
+      <div className="min-w-[954px]">
+        {userInfo && <DetailProfile userInfo={userInfo} />}
+        <EnergyBurned />
+        <Target />
+      </div>
     </Spin>
   );
 };

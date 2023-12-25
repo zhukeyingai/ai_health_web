@@ -31,7 +31,7 @@ const Layout: React.FC = () => {
         />
       </Sider>
       <Content
-        className="p-4 overflow-auto"
+        className="p-6 overflow-auto"
         style={{
           backgroundColor: "#f5f5f5",
         }}

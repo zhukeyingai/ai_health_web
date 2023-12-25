@@ -1,10 +1,9 @@
 import { Button } from "antd";
-import CommonCard from "../../components/CommonCard";
+import CommonCard from "../../../components/CommonCard";
 
 const FQA: React.FC = () => {
   return (
-    <CommonCard className="mt-4">
-      <div className="text-base font-semibold">经常问的问题</div>
+    <CommonCard className="mt-6" title="经常问的问题">
       <Button
         className="mt-2.5 p-0 h-[22px]"
         type="link"

@@ -107,3 +107,12 @@
 .dropdown-cascader.ant-cascader-dropdown .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover {
     background-color: #e9f6dc;
 }
+
+/* energy */
+.energy-radio .ant-radio-wrapper span.ant-radio+* {
+    padding-inline-end: 0;
+}
+
+.energy-select .ant-select-selector {
+    font-size: 12px;
+}
