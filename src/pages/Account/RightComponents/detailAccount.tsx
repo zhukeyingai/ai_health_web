@@ -5,9 +5,13 @@ import { UserInfo } from "../../../interface/user";
 
 interface DetailAccountProps {
   userInfo: UserInfo;
+  changePassword: () => void;
 }
 
-const DetailAccount: React.FC<DetailAccountProps> = ({ userInfo }) => {
+const DetailAccount: React.FC<DetailAccountProps> = ({
+  userInfo,
+  changePassword,
+}) => {
   return (
     <CommonCard title="账号信息">
       <Divider />
@@ -34,7 +38,7 @@ const DetailAccount: React.FC<DetailAccountProps> = ({ userInfo }) => {
         <Button
           className="p-0 text-xs ml-5"
           type="link"
-          onClick={() => console.log("@编辑密码")}
+          onClick={changePassword}
         >
           <EditOutlined />
           编辑

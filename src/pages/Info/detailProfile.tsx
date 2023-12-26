@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Form,
   Avatar,
@@ -8,6 +8,7 @@ import {
   InputNumber,
   Cascader,
   Button,
+  message,
 } from "antd";
 import locale from "antd/es/date-picker/locale/zh_CN";
 import {
@@ -21,6 +22,9 @@ import "dayjs/locale/zh-cn";
 import CommonCard from "../../components/CommonCard";
 import { CityList } from "../../constant/cityList";
 import { UserInfo } from "../../interface/user";
+import authApi from "../../services/auth";
+
+const { updateUserInfo } = authApi;
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -30,20 +34,54 @@ const commonStyle =
 const DateFormat = "YYYY-MM-DD";
 
 interface DetailProfileProps {
+  userId?: string;
   userInfo?: UserInfo;
 }
 
-const DetailProfile: React.FC<DetailProfileProps> = ({ userInfo }) => {
+const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
   const [form] = Form.useForm();
-  const [birthDate, setBirthDate] = useState<string>("");
+  const [curAge, setCurAge] = useState<number>();
+  const [today, setToday] = useState<any>();
+
+  useEffect(() => {
+    setToday(dayjs());
+  }, []);
+
+  useEffect(() => {
+    if (curAge) {
+      form.setFieldsValue({
+        age: curAge,
+      });
+    }
+  }, [curAge]);
+
+  const onSubmit = () => {
+    form.validateFields().then(async (values) => {
+      try {
+        const { birthday, ...updatedValues } = values;
+        const params = {
+          user_id: userId,
+          birthday: birthday.format(DateFormat),
+          ...updatedValues,
+        };
+        await updateUserInfo(params)
+          .then((res) => {
+            if (res.data) {
+              message.success("保存成功");
+            } else {
+              message.warning("信息未发生改变，无需保存");
+            }
+          })
+          .catch((err) => message.error(`保存信息失败：${err}`));
+      } catch (err) {
+        message.error(`保存失败：${err}`);
+      }
+    });
+  };
 
   return (
     <CommonCard>
-      <Form
-        form={form}
-        layout="vertical"
-        initialValues={{ ...userInfo, birthday: dayjs(userInfo?.birthday) }}
-      >
+      <Form form={form} layout="vertical" initialValues={userInfo}>
         <FormItem
           className="flex justify-center items-center"
           name="avatar_url"
@@ -73,20 +111,20 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userInfo }) => {
               <RadioButton
                 className={`mr-3 flex-1 h-[40px] leading-normal hover:text-[#1e1e1e] ${commonStyle}`}
                 style={{ borderInlineStart: 0 }}
-                value="male"
-              >
-                <div className="flex items-center">
-                  <ManOutlined className="mr-2" />
-                  <span>男性</span>
-                </div>
-              </RadioButton>
-              <RadioButton
-                className={`flex-1 h-[40px] leading-normal hover:text-[#1e1e1e] ${commonStyle}`}
-                value="female"
+                value="0"
               >
                 <div className="flex items-center">
                   <WomanOutlined className="mr-2" />
                   <span>女性</span>
+                </div>
+              </RadioButton>
+              <RadioButton
+                className={`flex-1 h-[40px] leading-normal hover:text-[#1e1e1e] ${commonStyle}`}
+                value="1"
+              >
+                <div className="flex items-center">
+                  <ManOutlined className="mr-2" />
+                  <span>男性</span>
                 </div>
               </RadioButton>
             </RadioGroup>
@@ -100,11 +138,8 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userInfo }) => {
           >
             <DatePicker
               className={`w-full focus-within:border-[#9ad14b] ${commonStyle}`}
-              value={dayjs(birthDate)}
               onChange={(value) => {
-                if (value) {
-                  setBirthDate(value.format(DateFormat));
-                }
+                setCurAge(today.diff(dayjs(value), "year"));
               }}
               placeholder="请选择"
               format={DateFormat}
@@ -158,7 +193,9 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userInfo }) => {
           <FormItem name="bmi"></FormItem> */}
       </Form>
       <div className="w-full flex justify-end">
-        <Button type="primary">保存</Button>
+        <Button type="primary" onClick={onSubmit}>
+          保存
+        </Button>
       </div>
     </CommonCard>
   );

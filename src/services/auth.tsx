@@ -1,5 +1,5 @@
 import request from "./request";
-import { UserInfo } from "../interface/user";
+import { BaseInfo, UserInfo } from "../interface/user";
 
 export default {
   // 注册
@@ -18,8 +18,21 @@ export default {
   async deleteUser(data: Pick<UserInfo, "user_id">) {
     return await request.post("/auth/deleteUser", data);
   },
-  // 用户信息
+  // 获取用户信息
   async getUserInfo(data: Pick<UserInfo, "user_id">) {
     return await request.get("/user/getUserInfo", { params: data });
+  },
+  // 更改密码
+  async updatePassword(data: {
+    user_id: string;
+    oldPassword: string;
+    newPassword: string;
+    repeatedPassword: string;
+  }) {
+    return await request.patch("/user/updatePassword", data);
+  },
+  // 更改用户信息
+  async updateUserInfo(data: BaseInfo) {
+    return await request.patch("/user/updateUserInfo", data);
   },
 };

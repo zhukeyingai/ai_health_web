@@ -3,15 +3,15 @@
 }
 
 .radio-button .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child {
-    background: #eff5fe;
-    border-color: #eff5fe;
-    color: #337bf7;
-}
-
-.radio-button .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):nth-child(2) {
     background: #fdeff9;
     border-color: #fdeff9;
     color: #ee7ecc;
+}
+
+.radio-button .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):nth-child(2) {
+    background: #eff5fe;
+    border-color: #eff5fe;
+    color: #337bf7;
 }
 
 .birthday-picker .ant-picker .ant-picker-clear>* {

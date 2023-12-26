@@ -11,19 +11,23 @@ import DetailAccount from "./RightComponents/detailAccount";
 import Notice from "./RightComponents/notice";
 import Privacy from "./RightComponents/privacy";
 import DataAccount from "./RightComponents/dataAccount";
+import ModalUpdatePwd from "./modalUpdatePwd";
 import "./index.css";
 
 const { deleteUser, getUserInfo } = authApi;
 
 const Account: React.FC = () => {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string>();
   const [userInfo, setUserInfo] = useState<UserInfo>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showUpdatePwdModal, setShowUpdatePwdModal] = useState<boolean>(false);
 
   useEffect(() => {
     const currentUserId = localStorage.getItem(USER_ID_KEY);
-    setUserId(currentUserId);
+    if (currentUserId) {
+      setUserId(currentUserId);
+    }
   }, []);
 
   useEffect(() => {
@@ -75,11 +79,23 @@ const Account: React.FC = () => {
         <FQA />
       </div>
       <div className="ml-6 flex-grow flex-shrink-0">
-        {userInfo && <DetailAccount userInfo={userInfo} />}
+        {userInfo && (
+          <DetailAccount
+            userInfo={userInfo}
+            changePassword={() => setShowUpdatePwdModal(true)}
+          />
+        )}
         <Notice />
         <Privacy />
         <DataAccount onDelete={onDelete} />
       </div>
+      {showUpdatePwdModal && (
+        <ModalUpdatePwd
+          userId={userId}
+          onCancel={() => setShowUpdatePwdModal(false)}
+          onSuccess={() => setShowUpdatePwdModal(false)}
+        />
+      )}
     </Spin>
   );
 };
