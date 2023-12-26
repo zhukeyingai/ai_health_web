@@ -39,21 +39,23 @@ const Info: React.FC = () => {
           const { birthday, address, ...values } = res.data;
           const curBirthday = dayjs(birthday);
           const curAddress = [];
-          const arr = address ? JSON.parse(address) : null;
-          const p = CityList.find((i) => i.value === arr[0]);
-          if (p) {
-            const c = p.children.find((child) => child.value === arr[1]);
-            if (c) {
-              curAddress.push(p.label, c.label);
+          if (address) {
+            const arr = address ? JSON.parse(address) : null;
+            const p = CityList.find((i) => i.value === arr[0]);
+            if (p) {
+              const c = p.children.find((child) => child.value === arr[1]);
+              if (c) {
+                curAddress.push(p.label, c.label);
+              } else {
+                curAddress.push(p.label, null);
+              }
             } else {
-              curAddress.push(p.label, null);
+              curAddress.push(null, null);
             }
-          } else {
-            curAddress.push(null, null);
           }
           setUserInfo({
             birthday: curBirthday,
-            address: curAddress,
+            address: address ? curAddress : null,
             ...values,
           });
         })

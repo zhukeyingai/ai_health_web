@@ -8,6 +8,8 @@ import {
   InputNumber,
   Cascader,
   Button,
+  Dropdown,
+  Upload,
   message,
 } from "antd";
 import locale from "antd/es/date-picker/locale/zh_CN";
@@ -17,6 +19,8 @@ import {
   ManOutlined,
   WomanOutlined,
 } from "@ant-design/icons";
+import ImgCrop from "antd-img-crop";
+import type { MenuProps } from "antd";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 import CommonCard from "../../components/CommonCard";
@@ -55,6 +59,17 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
     }
   }, [curAge]);
 
+  const onModalOk = (value: any) => {
+    // Handle OK button click
+    console.log("保存", value);
+  };
+
+  const onModalCancel = (resolve: any) => {
+    // Handle Cancel button click
+    console.log("取消");
+    resolve(false); // Resolve with false to close the modal
+  };
+
   const onSubmit = () => {
     form.validateFields().then(async (values) => {
       try {
@@ -79,6 +94,36 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
     });
   };
 
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <ImgCrop
+          cropShape="round"
+          modalTitle="上传头像"
+          modalOk="保存"
+          modalCancel="取消"
+          onModalOk={onModalOk}
+          onModalCancel={onModalCancel}
+        >
+          <Upload showUploadList={false}>上传头像</Upload>
+        </ImgCrop>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <div
+          onClick={() => {
+            console.log("@删除头像");
+          }}
+        >
+          删除头像
+        </div>
+      ),
+    },
+  ];
+
   return (
     <CommonCard>
       <Form form={form} layout="vertical" initialValues={userInfo}>
@@ -92,21 +137,43 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
             ) : (
               <Avatar size={100} icon={<UserOutlined />} />
             )}
-            <Avatar
-              className="absolute bottom-0 right-0 border-2 border-white cursor-pointer bg-[#e0f4e7]"
-              size={32}
-              icon={<EditOutlined className="text-[#2db55d]" />}
-            />
+            <Dropdown menu={{ items }} trigger={["click"]}>
+              <Avatar
+                className="absolute bottom-0 right-0 border-2 border-white cursor-pointer bg-[#e0f4e7]"
+                size={32}
+                icon={<EditOutlined className="text-[#2db55d]" />}
+              />
+            </Dropdown>
           </div>
         </FormItem>
         <div className="flex justify-between gap-6">
-          <FormItem className="w-full" label="昵称" name="user_name">
+          <FormItem
+            className="w-full"
+            label="昵称"
+            name="user_name"
+            rules={[
+              {
+                required: true,
+                message: "昵称为必填项",
+              },
+            ]}
+          >
             <Input
               className={`focus:border-[#9ad14b] ${commonStyle}`}
               placeholder="昵称（必填项）"
             />
           </FormItem>
-          <FormItem className="w-full radio-button" label="性别" name="sex">
+          <FormItem
+            className="w-full radio-button"
+            label="性别"
+            name="sex"
+            rules={[
+              {
+                required: true,
+                message: "性别为必选项",
+              },
+            ]}
+          >
             <RadioGroup className="flex justify-between" buttonStyle="solid">
               <RadioButton
                 className={`mr-3 flex-1 h-[40px] leading-normal hover:text-[#1e1e1e] ${commonStyle}`}
@@ -135,6 +202,12 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
             className="w-full birthday-picker"
             label="生日"
             name="birthday"
+            rules={[
+              {
+                required: true,
+                message: "生日为必填项",
+              },
+            ]}
           >
             <DatePicker
               className={`w-full focus-within:border-[#9ad14b] ${commonStyle}`}
@@ -152,18 +225,38 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
           </FormItem>
         </div>
         <div className="flex justify-between gap-6">
-          <FormItem className="w-full" label="身高" name="height">
+          <FormItem
+            className="w-full"
+            label="身高"
+            name="height"
+            rules={[
+              {
+                required: true,
+                message: "身高为必填项",
+              },
+            ]}
+          >
             <InputNumber
               rootClassName="w-full number-input"
               addonAfter="cm"
-              defaultValue={100}
+              placeholder="身高（必填项）"
             />
           </FormItem>
-          <FormItem className="w-full" label="体重" name="weight">
+          <FormItem
+            className="w-full"
+            label="体重"
+            name="weight"
+            rules={[
+              {
+                required: true,
+                message: "体重为必填项",
+              },
+            ]}
+          >
             <InputNumber
               rootClassName="w-full number-input"
               addonAfter="kg"
-              defaultValue={100}
+              placeholder="体重（必填项）"
             />
           </FormItem>
         </div>

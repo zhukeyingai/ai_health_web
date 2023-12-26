@@ -66,3 +66,5 @@ pnpm build
   - `pnpm i react-router-dom`
 - 安装 dayjs
   - `pnpm i dayjs`
+- 安装裁剪图片
+  - `pnpm i antd-img-crop`
