@@ -68,3 +68,5 @@ pnpm build
   - `pnpm i dayjs`
 - 安装裁剪图片
   - `pnpm i antd-img-crop`
+- 安装lodash
+  - `pnpm i lodash-es @types/lodash-es`

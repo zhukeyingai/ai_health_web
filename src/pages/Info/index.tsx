@@ -71,7 +71,9 @@ const Info: React.FC = () => {
   return (
     <Spin spinning={isLoading}>
       <div className="min-w-[954px]">
-        {userInfo && <DetailProfile userId={userId} userInfo={userInfo} />}
+        {userId && userInfo && (
+          <DetailProfile userId={userId} userInfo={userInfo} />
+        )}
         <EnergyBurned />
         <Target />
       </div>

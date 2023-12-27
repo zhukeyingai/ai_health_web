@@ -46,6 +46,10 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
   const [form] = Form.useForm();
   const [curAge, setCurAge] = useState<number>();
   const [today, setToday] = useState<any>();
+  const [uploadData, setUploadData] = useState<{
+    name: string;
+    url: string;
+  }>();
 
   useEffect(() => {
     setToday(dayjs());
@@ -58,17 +62,6 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
       });
     }
   }, [curAge]);
-
-  const onModalOk = (value: any) => {
-    // Handle OK button click
-    console.log("保存", value);
-  };
-
-  const onModalCancel = (resolve: any) => {
-    // Handle Cancel button click
-    console.log("取消");
-    resolve(false); // Resolve with false to close the modal
-  };
 
   const onSubmit = () => {
     form.validateFields().then(async (values) => {
@@ -103,10 +96,29 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
           modalTitle="上传头像"
           modalOk="保存"
           modalCancel="取消"
-          onModalOk={onModalOk}
-          onModalCancel={onModalCancel}
         >
-          <Upload showUploadList={false}>上传头像</Upload>
+          <Upload
+            name="avatar"
+            maxCount={1}
+            accept=".jpg, .jpeg, .png"
+            showUploadList={false}
+            action="/workbench/user/uploadAvatar"
+            onChange={({ file }) => {
+              if (file.status === "done") {
+                const response = file.response;
+                if (response?.data) {
+                  setUploadData(response.data);
+                  form.setFieldsValue({ avatar_url: response.data.url });
+                  message.success("头像上传成功");
+                }
+              }
+              if (file.status === "error") {
+                message.error("上传头像失败");
+              }
+            }}
+          >
+            上传头像
+          </Upload>
         </ImgCrop>
       ),
     },
@@ -124,6 +136,7 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
     },
   ];
 
+  console.log("@form", form.getFieldsValue());
   return (
     <CommonCard>
       <Form form={form} layout="vertical" initialValues={userInfo}>
@@ -132,8 +145,11 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
           name="avatar_url"
         >
           <div className="relative">
-            {userInfo?.avatar_url ? (
-              <Avatar size={100} src={userInfo?.avatar_url} />
+            {userInfo?.avatar_url || form.getFieldValue("avatar_url") ? (
+              <Avatar
+                size={100}
+                src={userInfo?.avatar_url || form.getFieldValue("avatar_url")}
+              />
             ) : (
               <Avatar size={100} icon={<UserOutlined />} />
             )}
