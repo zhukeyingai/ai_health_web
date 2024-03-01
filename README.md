@@ -6,6 +6,11 @@
 
 > 推荐本项目使用 [pnpm](https://github.com/pnpm/pnpm/) 包管理工具
 
+## 开发流程
+
+- 本地feat分支，推送至远程feat分支
+- 远程feat分支合并入master分支
+
 ## 项目运行
 
 1. 拉取项目代码
