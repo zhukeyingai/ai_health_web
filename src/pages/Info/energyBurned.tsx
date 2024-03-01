@@ -65,7 +65,7 @@ const EnergyBurned: React.FC = () => {
       <PieceContent header="活动水平">
         <Select
           className="h-[25px] energy-select"
-          style={{ width: 210 }}
+          style={{ width: 240 }}
           onChange={(value) => console.log("@selectValue", value)}
           placeholder="请选择您的活动水平"
         >

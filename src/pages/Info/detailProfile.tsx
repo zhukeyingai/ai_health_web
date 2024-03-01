@@ -136,7 +136,6 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
     },
   ];
 
-  console.log("@form", form.getFieldsValue());
   return (
     <CommonCard>
       <Form form={form} layout="vertical" initialValues={userInfo}>
