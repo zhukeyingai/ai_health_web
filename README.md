@@ -64,3 +64,9 @@ pnpm build
   - `pnpm i axios`
 - 安装 react route
   - `pnpm i react-router-dom`
+- 安装 dayjs
+  - `pnpm i dayjs`
+- 安装裁剪图片
+  - `pnpm i antd-img-crop`
+- 安装lodash
+  - `pnpm i lodash-es @types/lodash-es`

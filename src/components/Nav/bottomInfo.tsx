@@ -8,7 +8,7 @@ import {
   BellOutlined,
   PoweroffOutlined,
 } from "@ant-design/icons";
-import { USERID_KEY } from "../../constant/localStorageKey";
+import { USER_ID_KEY } from "../../constant/localStorageKey";
 import authApi from "../../services/auth";
 
 const { logout } = authApi;
@@ -23,7 +23,7 @@ const BottomInfo: React.FC<BottomInfoProps> = memo(
     const navigate = useNavigate();
 
     const onLogout = () => {
-      const currentUserId = localStorage.getItem(USERID_KEY);
+      const currentUserId = localStorage.getItem(USER_ID_KEY);
       if (currentUserId) {
         const params = { user_id: currentUserId };
         logout(params)
@@ -53,12 +53,11 @@ const BottomInfo: React.FC<BottomInfoProps> = memo(
                   label: (
                     <div
                       onClick={() => {
-                        console.log("@个人中心");
-                        message.error("个人中心");
+                        navigate("/info");
                       }}
                     >
                       <UserOutlined className="mr-1.5" />
-                      个人中心
+                      个人信息
                     </div>
                   ),
                 },

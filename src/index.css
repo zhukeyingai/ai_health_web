@@ -6,7 +6,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-  background-color: #f2f3f5;
+  /* #f5f5f5 */
+  background-color: #fff;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -30,7 +31,7 @@ body {
 
 *::-webkit-scrollbar-track {
   border-radius: 0;
-  background: tgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.1); */
 }
 
 #root {
@@ -53,6 +54,16 @@ object {
 p {
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+
+/* a */
+a {
+  color: #9ad14b;
+}
+
+a:hover {
+  color: #b2d482;
 }
 
 /* 封装一些 tailwind class*/
@@ -85,6 +96,15 @@ p {
   }
 
   /* 文字三行省略 */
+  .tw-line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+  }
+
+  /* 文字三行省略 */
   .tw-line-clamp-3 {
     overflow: hidden;
     display: -webkit-box;
@@ -103,6 +123,11 @@ p {
   }
 }
 
+/* modal */
+.ant-modal .ant-modal-header {
+  margin-bottom: 24px;
+}
+
 /* 输入框 */
 .ant-input-affix-wrapper:focus-within {
   border-color: #9ad14b;
@@ -110,6 +135,15 @@ p {
 }
 
 .ant-input-affix-wrapper:hover {
+  border-color: #b2d482;
+}
+
+.ant-input:focus-within {
+  border-color: #9ad14b;
+  box-shadow: 0 0 0 2px rgba(148, 255, 4, 0.1);
+}
+
+.ant-input:hover {
   border-color: #b2d482;
 }
 
@@ -121,6 +155,17 @@ p {
 
 .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
   background: #b2d482;
+}
+
+/* button-default */
+.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #b2d482;
+  border-color: #b2d482;
+}
+
+.ant-popconfirm-buttons .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #b2d482;
+  border-color: #b2d482;
 }
 
 /* button-link */
@@ -146,6 +191,15 @@ p {
   background-color: #e9f6dc;
 }
 
+.ant-menu-vertical .ant-menu-item {
+  margin-inline: 8px;
+  width: calc(100% - 16px);
+}
+
+.ant-menu-inline-collapsed>.ant-menu-item {
+  padding-inline: calc(50% - 16px);
+}
+
 /* collapsed */
 .ant-menu-inline-collapsed-tooltip {
   display: none;
@@ -153,4 +207,81 @@ p {
 
 .ant-dropdown-menu-inline-collapsed-tooltip {
   display: none;
+}
+
+/* 分割线 */
+.ant-divider-horizontal {
+  margin: 16px 0;
+}
+
+/* switch */
+.ant-switch.ant-switch-checked {
+  background: #9ad14b;
+}
+
+.ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled):hover {
+  background: #b2d482;
+}
+
+/* ant-picker */
+.ant-picker:hover {
+  border-color: #b2d482;
+}
+
+.ant-picker-focused.ant-picker {
+  border-color: #9ad14b;
+  box-shadow: 0 0 0 2px rgba(148, 255, 4, 0.1);
+}
+
+.ant-picker-dropdown .ant-picker-time-panel-column>li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+  background: #e9f6dc;
+}
+
+/* 日期选择器 */
+.ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+  background: #9ad14b;
+}
+
+/* radio */
+.ant-radio-wrapper:hover .ant-radio-inner {
+  border-color: #9ad14b;
+}
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+  border-color: #9ad14b;
+  background-color: #9ad14b;
+}
+
+.ant-radio-wrapper .ant-radio-checked::after {
+  border: 1px solid #9ad14b;
+}
+
+/* select */
+.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+  border-color: #b2d482;
+}
+
+.ant-select-focused.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
+  border-color: #9ad14b;
+  box-shadow: 0 0 0 2px rgba(148, 255, 4, 0.1);
+}
+
+.ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: #e9f6dc;
+}
+
+/* slider */
+.ant-slider .ant-slider-track,
+.ant-slider:hover .ant-slider-track {
+  background-color: #9ad14b;
+}
+
+.ant-slider .ant-slider-handle::after,
+.ant-slider:hover .ant-slider-handle::after {
+  box-shadow: 0 0 0 2px #9ad14b;
+}
+
+.ant-slider .ant-slider-handle:hover::after,
+.ant-slider .ant-slider-handle:focus::after {
+  box-shadow: 0 0 0 4px #9ad14b;
 }

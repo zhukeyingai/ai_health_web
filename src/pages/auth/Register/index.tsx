@@ -8,7 +8,7 @@ import "../index.css";
 
 const { register } = authApi;
 
-const Auth: React.FC = () => {
+const Register: React.FC = () => {
   const navigate = useNavigate();
   const formRef = useRef<FormInstance>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -52,4 +52,4 @@ const Auth: React.FC = () => {
   );
 };
 
-export default Auth;
+export default Register;

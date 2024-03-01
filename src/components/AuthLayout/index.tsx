@@ -4,13 +4,16 @@ import LoginSvg from "../../assets/loginSvg.svg";
 import AiHealthSvg from "../../assets/aiHealthSvg.svg";
 import Footer from "../Footer";
 
-interface AuthLayout {
+interface AuthLayoutProps {
   content: ReactNode;
 }
 
-const authLayout: React.FC<AuthLayout> = ({ content }) => {
+const AuthLayout: React.FC<AuthLayoutProps> = ({ content }) => {
   return (
-    <div className="flex flex-col items-center justify-center h-full overflow-aut">
+    <div
+      className="flex flex-col items-center justify-center h-full overflow-aut"
+      style={{ backgroundColor: "#f5f5f5" }}
+    >
       <Row className="bg-white justify-center items-center w-3/5 max-md:w-full h-[600px] rounded-lg shadow-lg ">
         <Col
           className="w-1/2 h-full max-md:hidden"
@@ -31,4 +34,4 @@ const authLayout: React.FC<AuthLayout> = ({ content }) => {
   );
 };
 
-export default authLayout;
+export default AuthLayout;

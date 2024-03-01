@@ -53,6 +53,22 @@ const put = (api: string, params?: any, config?: any) => {
   });
 };
 
+const patch = (api: string, params?: any, config?: any) => {
+  return new Promise<any>((resolve, reject) => {
+    instance
+      .patch(api, params, config)
+      .then((res) => {
+        if (res.status !== 200) {
+          throw res;
+        }
+        resolve(res.data);
+      })
+      .catch((e) => {
+        reject(e?.data?.message || e?.message || e);
+      });
+  });
+};
+
 const get = (api: string, config?: any) => {
   return new Promise<any>((resolve, reject) => {
     instance
@@ -69,5 +85,5 @@ const get = (api: string, config?: any) => {
   });
 };
 
-const request = { get, post, put };
+const request = { get, post, put, patch };
 export default request;

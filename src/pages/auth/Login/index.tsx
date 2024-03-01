@@ -2,14 +2,14 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormInstance, Button, Spin, message } from "antd";
 import AuthLayout from "../../../components/AuthLayout";
-import { TOKEN_KEY, USERID_KEY } from "../../../constant/localStorageKey";
+import { TOKEN_KEY, USER_ID_KEY } from "../../../constant/localStorageKey";
 import authApi from "../../../services/auth";
 import LoginForm from "./loginForm";
 import "../index.css";
 
 const { login } = authApi;
 
-const Auth: React.FC = () => {
+const Login: React.FC = () => {
   const navigate = useNavigate();
   const formRef = useRef<FormInstance>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -21,7 +21,7 @@ const Auth: React.FC = () => {
       .then((res) => {
         message.success("登录成功！");
         localStorage.setItem(TOKEN_KEY, res.data.token);
-        localStorage.setItem(USERID_KEY, res.data.user_id);
+        localStorage.setItem(USER_ID_KEY, res.data.user_id);
         navigate("/home");
       })
       .catch((err) => {
@@ -56,4 +56,4 @@ const Auth: React.FC = () => {
   );
 };
 
-export default Auth;
+export default Login;
