@@ -1,7 +1,13 @@
-import { HomeOutlined, UserOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  UserOutlined,
+  SettingOutlined,
+  AppstoreAddOutlined,
+} from "@ant-design/icons";
 
 export const PATH_MAP = {
   HOME: "/home",
+  DAIRY: "/dairy",
   ACCOUNT: "/account",
   INFO: "/info",
 };
@@ -11,6 +17,11 @@ export const NavList = [
     path: PATH_MAP.HOME,
     name: "首页",
     icon: <HomeOutlined />,
+  },
+  {
+    path: PATH_MAP.DAIRY,
+    name: "日记",
+    icon: <AppstoreAddOutlined />,
   },
   {
     path: PATH_MAP.INFO,

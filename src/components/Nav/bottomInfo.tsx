@@ -8,7 +8,7 @@ import {
   BellOutlined,
   PoweroffOutlined,
 } from "@ant-design/icons";
-import { USER_ID_KEY } from "../../constant/localStorageKey";
+import { useUserId } from "../../common/utils/useUserId";
 import authApi from "../../services/auth";
 
 const { logout } = authApi;
@@ -21,21 +21,20 @@ interface BottomInfoProps {
 const BottomInfo: React.FC<BottomInfoProps> = memo(
   ({ collapsed, onCollapse }) => {
     const navigate = useNavigate();
+    const { userId } = useUserId();
 
     const onLogout = () => {
-      const currentUserId = localStorage.getItem(USER_ID_KEY);
-      if (currentUserId) {
-        const params = { user_id: currentUserId };
-        logout(params)
-          .then(() => {
-            message.success("退出成功！");
-            localStorage.clear();
-            navigate("/login");
-          })
-          .catch((err) => {
-            message.error(`退出失败:${err}`);
-          });
-      }
+      if (!userId) return;
+      const params = { user_id: userId };
+      logout(params)
+        .then(() => {
+          message.success("退出成功！");
+          localStorage.clear();
+          navigate("/login");
+        })
+        .catch((err) => {
+          message.error(`退出失败:${err}`);
+        });
     };
 
     return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Spin, message } from "antd";
-import { USER_ID_KEY } from "../../constant/localStorageKey";
+import { useUserId } from "../../common/utils/useUserId";
 import { UserInfo } from "../../interface/user";
 import authApi from "../../services/auth";
 import Me from "./LeftComponents/me";
@@ -18,17 +18,10 @@ const { deleteUser, getUserInfo } = authApi;
 
 const Account: React.FC = () => {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState<string>();
+  const { userId } = useUserId();
   const [userInfo, setUserInfo] = useState<UserInfo>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showUpdatePwdModal, setShowUpdatePwdModal] = useState<boolean>(false);
-
-  useEffect(() => {
-    const currentUserId = localStorage.getItem(USER_ID_KEY);
-    if (currentUserId) {
-      setUserId(currentUserId);
-    }
-  }, []);
 
   useEffect(() => {
     if (userId) {
@@ -37,20 +30,19 @@ const Account: React.FC = () => {
   }, [userId]);
 
   const getUser = () => {
-    if (userId) {
-      setIsLoading(true);
-      const params = { user_id: userId };
-      getUserInfo(params)
-        .then((res) => {
-          setUserInfo(res.data);
-        })
-        .catch((err) => {
-          message.error(`获取用户信息失败:${err}`);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
+    if (!userId) return;
+    setIsLoading(true);
+    const params = { user_id: userId };
+    getUserInfo(params)
+      .then((res) => {
+        setUserInfo(res.data);
+      })
+      .catch((err) => {
+        message.error(`获取用户信息失败:${err}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const onDelete = () => {

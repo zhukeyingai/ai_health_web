@@ -1,8 +1,8 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import { Button, Form, Input } from "antd";
 import {
-  validateEmail,
-  validatePassword,
+  EmailValidator,
+  PasswordValidator,
 } from "../../../common/utils/validator";
 import { UserInfo } from "../../../interface/user";
 
@@ -24,7 +24,7 @@ const RegisterForm: React.FC<RegisterFormProps> = forwardRef(
           label="邮箱"
           name="email"
           validateDebounce={1000}
-          rules={[{ validator: validateEmail }]}
+          rules={[{ validator: EmailValidator }]}
           hasFeedback
         >
           <Input />
@@ -34,7 +34,7 @@ const RegisterForm: React.FC<RegisterFormProps> = forwardRef(
           name="password"
           className="pwd"
           validateDebounce={1000}
-          rules={[{ validator: validatePassword }]}
+          rules={[{ validator: PasswordValidator }]}
           hasFeedback
         >
           <Input.Password type="password" />
