@@ -1,6 +1,20 @@
 import validator from "email-validator";
 
-export const validateEmail = (_: any, value: any) => {
+export const RequiredValidator = [
+  {
+    validator(_: any, value: any, cb: any) {
+      if (value === undefined || value === null) {
+        return cb("必填");
+      } else if (typeof value === "string" && !value?.trim()) {
+        return cb("必填");
+      }
+      return cb();
+    },
+    message: "必填",
+  },
+];
+
+export const EmailValidator = (_: any, value: any) => {
   if (!value) {
     return Promise.reject("请输入邮箱");
   } else if (!validator.validate(value)) {
@@ -9,7 +23,7 @@ export const validateEmail = (_: any, value: any) => {
   return Promise.resolve();
 };
 
-export const validatePassword = (_: any, value: any) => {
+export const PasswordValidator = (_: any, value: any) => {
   // 密码验证正则
   // (?=.*[a-z])：密码必须至少包含一个小写字母。
   // (?=.*[A-Z])：密码必须至少包含一个大写字母。

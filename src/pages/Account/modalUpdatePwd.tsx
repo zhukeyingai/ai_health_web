@@ -42,6 +42,8 @@ const ModalUpdatePwd: React.FC<ModalUpdatePwdProps> = ({
       title="更换密码"
       centered
       open={true}
+      okText="保存"
+      cancelText="取消"
       onOk={onSubmit}
       onCancel={onCancel}
       confirmLoading={isLoading}

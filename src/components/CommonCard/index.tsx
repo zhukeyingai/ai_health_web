@@ -14,10 +14,10 @@ const CommonCard: React.FC<CommonCardProps> = memo(
   ({ className, title, description, onClick, buttonName, children }) => {
     return (
       <div
-        className={`bg-white rounded-lg p-4 ${className}`}
+        className={`bg-white rounded-lg p-4 ${className ? className : ''}`}
         style={{ boxShadow: "#7779861a 0 3px 20px" }}
       >
-        <div className="flex justify-between">
+        {title && <div className="flex justify-between">
           <div className="flex flex-col">
             <div className="text-base font-semibold">{title}</div>
             {description && (
@@ -33,7 +33,7 @@ const CommonCard: React.FC<CommonCardProps> = memo(
               {buttonName}
             </Button>
           )}
-        </div>
+        </div>}
         {children}
       </div>
     );
