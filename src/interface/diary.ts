@@ -4,6 +4,12 @@ export enum MealTime {
   dinner = "DINNER",
 }
 
+export enum SportKey {
+  normalExercise = "NORMAL_EXERCISE",
+  ballGames = "BALLGAMES",
+  gym = "GYM",
+}
+
 export interface Food {
   foodName: string;
   amount: number;
@@ -28,4 +34,46 @@ export interface MealGroupedByDate {
 export interface MealRecord {
   user_id: string;
   meals: MealRequest[];
+}
+
+export interface WaterRequest {
+  user_id: string;
+  quantity: number;
+}
+
+export interface SnackRequest {
+  user_id: string;
+  foods: Food[];
+}
+
+export interface SnackRecord {
+  date: string;
+  foods: Food[];
+}
+
+export interface ExerciseRequest {
+  user_id: string;
+  type: SportKey;
+  sport: string;
+  amount: number;
+}
+
+export interface diaryQueryByDays {
+  user_id: string;
+  days: number;
+}
+
+export interface Sport {
+  sport: string;
+  amount: number;
+}
+
+export interface Sports {
+  type: SportKey;
+  sports: Sport[];
+}
+
+export interface ExerciseResponse {
+  date: string;
+  sports: Sports[];
 }
