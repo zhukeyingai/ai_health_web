@@ -35,24 +35,29 @@ const MealModal: React.FC<Props> = ({ userId, onCancel, onSuccess }) => {
   const onSubmit = () => {
     if (!userId) return;
     form.validateFields().then(({ meals }) => {
-      if (meals.length > 0) {
-        setLoading(true);
-        const params: MealRecord = {
-          user_id: userId,
-          meals,
-        };
-        createMealRecords(params)
-          .then(({ data }) => {
-            if (data) {
-              message.success("您的就餐信息上传成功！");
-              onSuccess?.();
-            }
-          })
-          .catch((err) => message.error(`创建三餐信息失败：${err}`))
-          .finally(() => setLoading(false));
-      } else {
+      if (meals.length === 0) {
         message.error("当前没有填写任何就餐信息");
+        return;
       }
+      const meal = meals.find((i: any) => i?.eat && i?.foods.length === 0);
+      if (meal) {
+        message.error("当前餐次没有填写任何饮食信息");
+        return;
+      }
+      setLoading(true);
+      const params: MealRecord = {
+        user_id: userId,
+        meals,
+      };
+      createMealRecords(params)
+        .then(({ data }) => {
+          if (data) {
+            message.success("您的就餐信息上传成功！");
+            onSuccess?.();
+          }
+        })
+        .catch((err) => message.error(`创建三餐信息失败：${err}`))
+        .finally(() => setLoading(false));
     });
   };
 

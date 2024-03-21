@@ -9,7 +9,7 @@ import DinnerSvg from "../../../assets/dinner.svg";
 import CommonCard from "../../../components/CommonCard";
 import MealModal from "../Components/mealModal";
 import { MealTime, MealGroupedByDate } from "../../../interface/diary";
-import { MealItem, amountOptions } from "../constant";
+import { MealItem, amountOptions, genSubTitle } from "../constant";
 
 interface MealsProps {
   userId?: string;
@@ -20,25 +20,6 @@ interface MealsProps {
 const Meals: React.FC<MealsProps> = ({ userId, onRefresh, meals }) => {
   const [showMealModal, setShowMealModal] = useState<boolean>(false);
   const [days, setDays] = useState<number>(1);
-
-  const genSubTitle = (n: number) => {
-    let subTitle: string = "今日";
-    switch (n) {
-      case 1:
-        subTitle = "今日";
-        break;
-      case 3:
-        subTitle = "前三日";
-        break;
-      case 7:
-        subTitle = "前七日";
-        break;
-      default:
-        subTitle = "今日";
-        break;
-    }
-    return subTitle;
-  };
 
   const genMealIcon = (mealTime: MealTime) => {
     switch (mealTime) {
@@ -142,7 +123,7 @@ const Meals: React.FC<MealsProps> = ({ userId, onRefresh, meals }) => {
   };
 
   return (
-    <div className="w-1/2 overflow-hidden">
+    <div className="w-1/2 overflow-hidden min-w-[350px]">
       <CommonCard className="h-full relative">
         <div className="flex justify-between">
           <div className="flex items-center">
@@ -161,7 +142,7 @@ const Meals: React.FC<MealsProps> = ({ userId, onRefresh, meals }) => {
             </Dropdown>
           </div>
         </div>
-        {meals ? (
+        {Object.keys(meals).length > 0 ? (
           genContent()
         ) : (
           <Empty

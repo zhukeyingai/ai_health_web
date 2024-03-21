@@ -7,7 +7,7 @@ import {
 
 export const PATH_MAP = {
   HOME: "/home",
-  DAIRY: "/dairy",
+  Diary: "/diary",
   ACCOUNT: "/account",
   INFO: "/info",
 };
@@ -19,7 +19,7 @@ export const NavList = [
     icon: <HomeOutlined />,
   },
   {
-    path: PATH_MAP.DAIRY,
+    path: PATH_MAP.Diary,
     name: "日记",
     icon: <AppstoreAddOutlined />,
   },
