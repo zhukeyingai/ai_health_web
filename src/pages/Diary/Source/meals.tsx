@@ -7,7 +7,7 @@ import BreakfastSvg from "../../../assets/breakfast.svg";
 import LunchSvg from "../../../assets/lunch.svg";
 import DinnerSvg from "../../../assets/dinner.svg";
 import CommonCard from "../../../components/CommonCard";
-import MealModal from "../Components/mealModal";
+import MealModal from "../components/mealModal";
 import { MealTime, MealGroupedByDate } from "../../../interface/diary";
 import { MealItem, amountOptions, genSubTitle } from "../constant";
 
@@ -91,19 +91,23 @@ const Meals: React.FC<MealsProps> = ({ userId, onRefresh, meals }) => {
                   >
                     <div className="font-medium">{MealItem[item.mealTime]}</div>
                     <div className="mt-1 text-[13px]">
-                      {item.foods.map((m) => {
-                        const matchedItem = amountOptions.find(
-                          (i) => i.value === m.amount
-                        );
-                        return (
-                          <div key={`${m.foodName}_${m.amount}`}>
-                            <span className="mr-1">{m.foodName}</span>
-                            <span className="text-[#a6cf60]">
-                              【{matchedItem ? matchedItem.label : "未知"}】
-                            </span>
-                          </div>
-                        );
-                      })}
+                      {item.foods.length > 0 ? (
+                        item.foods.map((m) => {
+                          const matchedItem = amountOptions.find(
+                            (i) => i.value === m.amount
+                          );
+                          return (
+                            <div key={`${m.foodName}_${m.amount}`}>
+                              <span className="mr-1">{m.foodName}</span>
+                              <span className="text-[#a6cf60]">
+                                【{matchedItem ? matchedItem.label : "未知"}】
+                              </span>
+                            </div>
+                          );
+                        })
+                      ) : (
+                        <div className="text-[#a1a1aa]">{`没吃 :(`}</div>
+                      )}
                     </div>
                   </Timeline.Item>
                 ))}

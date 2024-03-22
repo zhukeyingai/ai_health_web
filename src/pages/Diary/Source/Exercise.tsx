@@ -10,7 +10,7 @@ import {
 } from "../constant";
 import ExerciseSvg from "../../../assets/exercise.svg";
 import CommonCard from "../../../components/CommonCard";
-import ExerciseModal from "../Components/exerciseModal";
+import ExerciseModal from "../components/exerciseModal";
 import { ExerciseResponse } from "../../../interface/diary";
 
 interface ExerciseProps {
@@ -75,7 +75,7 @@ const Exercise: React.FC<ExerciseProps> = ({
         <div className="px-3 py-5">
           {exerciseList.map(({ date, sports }) => {
             return (
-              <div key={date}>
+              <div key={date} className="pb-5">
                 <div className="mt-2 mb-2 ml-6 text-[#a1a1aa] text-sm">
                   {date}
                 </div>
@@ -101,12 +101,12 @@ const Exercise: React.FC<ExerciseProps> = ({
                             const curColor = amountTagColors[m.amount + 1];
                             return curSport ? (
                               <Tooltip
+                                key={m.sport}
                                 title={`运动时长：${curOption?.label ?? "未知"}`}
                               >
                                 <Tag
                                   className="cursor-pointer flex items-center py-1 rounded-lg"
                                   bordered={false}
-                                  key={m.sport}
                                   icon={
                                     <img
                                       className="mr-1"

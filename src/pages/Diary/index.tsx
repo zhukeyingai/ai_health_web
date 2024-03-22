@@ -9,10 +9,10 @@ import {
   diaryQueryByDays,
   ExerciseResponse,
 } from "../../interface/diary";
-import Meals from "./Source/meals";
-import Water from "./Source/water";
-import Snack from "./Source/snack";
-import Exercise from "./Source/Exercise";
+import Meals from "./source/meals";
+import Water from "./source/water";
+import Snack from "./source/snack";
+import Exercise from "./source/exercise";
 
 const Diary: React.FC = () => {
   const { userId } = useUserId();
