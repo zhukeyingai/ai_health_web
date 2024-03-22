@@ -10,7 +10,7 @@ import Snack4 from "../../../assets/snack_4.svg";
 import Snack5 from "../../../assets/snack_5.svg";
 import CommonCard from "../../../components/CommonCard";
 import { SnackRecord } from "../../../interface/diary";
-import SnackModal from "../Components/snackModal";
+import SnackModal from "../components/snackModal";
 import { amountOptions, genSubTitle } from "../constant";
 
 interface SnackProps {
@@ -96,7 +96,7 @@ const Snack: React.FC<SnackProps> = ({ userId, onRefresh, snackList }) => {
         <div className="pl-3 py-5">
           {snackList.map(({ date, foods }) => {
             return (
-              <div key={date}>
+              <div key={date} className="pb-5">
                 <div className="mt-2 mb-2 ml-6 text-[#a1a1aa] text-sm">
                   {date}
                 </div>
