@@ -15,7 +15,7 @@ export const PATH_MAP = {
 export const NavList = [
   {
     path: PATH_MAP.HOME,
-    name: "首页",
+    name: "仪表盘",
     icon: <HomeOutlined />,
   },
   {

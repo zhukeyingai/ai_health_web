@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal, Form, Input, message } from "antd";
 import authApi from "../../services/auth";
+import { RequiredValidator } from "../../common/utils/validator";
 
 const FormItem = Form.Item;
 const FormConfig = {
@@ -52,36 +53,24 @@ const ModalUpdatePwd: React.FC<ModalUpdatePwdProps> = ({
         <FormItem
           label="当前密码"
           name="oldPassword"
-          rules={[
-            {
-              required: true,
-              message: "请填写当前密码",
-            },
-          ]}
+          required
+          rules={RequiredValidator}
         >
           <Input.Password type="password" placeholder="当前密码" />
         </FormItem>
         <FormItem
           label="新密码"
           name="newPassword"
-          rules={[
-            {
-              required: true,
-              message: "请填写新密码",
-            },
-          ]}
+          required
+          rules={RequiredValidator}
         >
           <Input.Password type="password" placeholder="新密码" />
         </FormItem>
         <FormItem
           label="新密码（重复）"
           name="repeatedPassword"
-          rules={[
-            {
-              required: true,
-              message: "请确认新密码",
-            },
-          ]}
+          required
+          rules={RequiredValidator}
         >
           <Input.Password type="password" placeholder="新密码（重复）" />
         </FormItem>

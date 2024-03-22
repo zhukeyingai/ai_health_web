@@ -1,5 +1,5 @@
 import request from "./request";
-import { BaseInfo, UserInfo } from "../interface/user";
+import { BaseInfo, UserInfo, DailyWeight } from "../interface/user";
 
 export default {
   // 注册
@@ -34,5 +34,13 @@ export default {
   // 更改用户信息
   async updateUserInfo(data: BaseInfo) {
     return await request.patch("/user/updateUserInfo", data);
+  },
+  // 上传每日体重
+  async postDailyWeight(data: DailyWeight) {
+    return await request.post("/user/postDailyWeight", data);
+  },
+  // 查询当日体重
+  async queryDailyWeight(data: Pick<DailyWeight, "user_id">) {
+    return await request.get("/user/queryDailyWeight", { params: data });
   },
 };

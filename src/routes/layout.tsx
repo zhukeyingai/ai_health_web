@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Layout as OutLayout } from "antd";
 import Nav from "../components/Nav";
 import BottomInfo from "../components/Nav/bottomInfo";
-import ContentRouter from "./Content";
+import ContentRouter from "./content";
 
 const { Sider, Content } = OutLayout;
 
