@@ -27,6 +27,7 @@ import CommonCard from "../../components/CommonCard";
 import { CityList } from "../../constant/cityList";
 import { UserInfo } from "../../interface/user";
 import authApi from "../../services/auth";
+import { RequiredValidator } from "../../common/utils/validator";
 
 const { updateUserInfo } = authApi;
 
@@ -166,12 +167,8 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
             className="w-full"
             label="昵称"
             name="user_name"
-            rules={[
-              {
-                required: true,
-                message: "昵称为必填项",
-              },
-            ]}
+            required
+            rules={RequiredValidator}
           >
             <Input
               className={`focus:border-[#9ad14b] ${commonStyle}`}
@@ -182,12 +179,8 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
             className="w-full radio-button"
             label="性别"
             name="sex"
-            rules={[
-              {
-                required: true,
-                message: "性别为必选项",
-              },
-            ]}
+            required
+            rules={RequiredValidator}
           >
             <RadioGroup className="flex justify-between" buttonStyle="solid">
               <RadioButton
@@ -217,12 +210,8 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
             className="w-full birthday-picker"
             label="生日"
             name="birthday"
-            rules={[
-              {
-                required: true,
-                message: "生日为必填项",
-              },
-            ]}
+            required
+            rules={RequiredValidator}
           >
             <DatePicker
               className={`w-full focus-within:border-[#9ad14b] ${commonStyle}`}
@@ -244,12 +233,8 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
             className="w-full"
             label="身高"
             name="height"
-            rules={[
-              {
-                required: true,
-                message: "身高为必填项",
-              },
-            ]}
+            required
+            rules={RequiredValidator}
           >
             <InputNumber
               rootClassName="w-full number-input"
@@ -261,17 +246,14 @@ const DetailProfile: React.FC<DetailProfileProps> = ({ userId, userInfo }) => {
             className="w-full"
             label="体重"
             name="weight"
-            rules={[
-              {
-                required: true,
-                message: "体重为必填项",
-              },
-            ]}
+            required
+            rules={RequiredValidator}
           >
             <InputNumber
               rootClassName="w-full number-input"
               addonAfter="kg"
               placeholder="体重（必填项）"
+              disabled
             />
           </FormItem>
         </div>

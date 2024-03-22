@@ -21,3 +21,8 @@ export interface UserInfo extends BaseInfo {
   created_time: string;
   updated_time: string;
 }
+
+export interface DailyWeight {
+  user_id: string;
+  weight: number;
+}
