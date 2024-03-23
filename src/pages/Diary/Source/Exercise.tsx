@@ -98,14 +98,14 @@ const Exercise: React.FC<ExerciseProps> = ({
                             const curOption = amountOptions.find(
                               (i) => i.value === m.amount
                             );
-                            const curColor = amountTagColors[m.amount + 1];
+                            const curColor = amountTagColors[m.amount - 1];
                             return curSport ? (
                               <Tooltip
                                 key={m.sport}
                                 title={`运动时长：${curOption?.label ?? "未知"}`}
                               >
                                 <Tag
-                                  className="cursor-pointer flex items-center py-1 rounded-lg"
+                                  className="cursor-pointer flex items-center py-1"
                                   bordered={false}
                                   icon={
                                     <img
