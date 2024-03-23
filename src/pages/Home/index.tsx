@@ -1,22 +1,32 @@
-import { Form, Input, Modal, message } from "antd";
-import { useUserId } from "../../common/utils/useUserId";
 import { useEffect, useState } from "react";
+import { message } from "antd";
+import { useUserId } from "../../common/utils/useUserId";
 import authApi from "../../services/auth";
-import { RequiredValidator } from "../../common/utils/validator";
-import { DailyWeight } from "../../interface/user";
+import homeApi from "../../services/home";
+import WeightModal from "./weightModal";
+import { EChartRequest } from "../../interface/home";
+import { Weight } from "../../interface/user";
+import WeightEChart from "./ECahrts/weightEChart";
 
-const { postDailyWeight, queryDailyWeight } = authApi;
-const FormItem = Form.Item;
+const { queryDailyWeight } = authApi;
+const { queryWeightAllDays } = homeApi;
 
 const Home: React.FC = () => {
   const { userId } = useUserId();
   const [showWeightModal, setShowWeightModal] = useState<boolean>(true);
-  const [form] = Form.useForm();
+  const [weightDays, setWeightDays] = useState<number>(7);
+  const [weightLoading, setWeightLoading] = useState<boolean>(false);
+  const [weightList, setWeightList] = useState<Weight[]>([]);
 
   useEffect(() => {
     if (!userId) return;
     queryWeight(userId);
+    queryWeightList();
   }, [userId]);
+
+  useEffect(() => {
+    queryWeightList();
+  }, [weightDays]);
 
   const queryWeight = (user_id: string) => {
     queryDailyWeight({ user_id })
@@ -26,51 +36,34 @@ const Home: React.FC = () => {
       .catch((err) => message.error(`查询今日体重失败：${err}`));
   };
 
-  const onSubmit = () => {
+  const queryWeightList = () => {
     if (!userId) return;
-    form.validateFields().then(({ weight }) => {
-      const params: DailyWeight = {
-        user_id: userId,
-        weight: Number(weight),
-      };
-      postDailyWeight(params)
-        .then(({ data }) => {
-          if (data) {
-            message.success("今日体重上传成功");
-            setShowWeightModal(false);
-          }
-          queryWeight(userId);
-        })
-        .catch((err) => message.error(`上传今日体重失败：${err}`));
-    });
+    setWeightLoading(true);
+    const params: EChartRequest = {
+      user_id: userId,
+      days: weightDays,
+    };
+    queryWeightAllDays(params)
+      .then(({ data }) => {
+        setWeightList(data);
+      })
+      .catch((err) => message.error(`获取体重数据失败：${err}`))
+      .finally(() => setWeightLoading(false));
+  };
+
+  const onSuccess = (id: string) => {
+    setShowWeightModal(false);
+    queryWeight(id);
   };
 
   return (
     <div>
-      {showWeightModal && (
-        <Modal
-          title="今日体重"
-          centered
-          open={true}
-          closeIcon={false}
-          maskClosable={false}
-          okText="保存"
-          onOk={onSubmit}
-          footer={(_, { OkBtn }) => <OkBtn />}
-        >
-          <Form form={form}>
-            <FormItem
-              label="体重"
-              colon={false}
-              name="weight"
-              required
-              rules={RequiredValidator}
-            >
-              <Input />
-            </FormItem>
-          </Form>
-        </Modal>
-      )}
+      <WeightEChart
+        weightList={weightList}
+        loading={weightLoading}
+        onChangeDays={setWeightDays}
+      />
+      {showWeightModal && <WeightModal onSuccess={onSuccess} />}
     </div>
   );
 };
