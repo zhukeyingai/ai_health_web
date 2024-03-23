@@ -4,7 +4,7 @@ import {
   WaterRequest,
   SnackRequest,
   ExerciseRequest,
-  diaryQueryByDays,
+  DiaryQueryByDays,
 } from "../interface/diary";
 
 export default {
@@ -13,7 +13,7 @@ export default {
     return await request.post("/diary/createMealRecords", data);
   },
   // 查询三餐记录
-  async queryMealRecords(data: diaryQueryByDays) {
+  async queryMealRecords(data: DiaryQueryByDays) {
     return await request.get("/diary/queryMealRecords", { params: data });
   },
   // 查询饮水量
@@ -29,7 +29,7 @@ export default {
     return await request.post("/diary/createSnackRecords", data);
   },
   // 查询零食信息
-  async querySnackRecords(data: diaryQueryByDays) {
+  async querySnackRecords(data: DiaryQueryByDays) {
     return await request.get("/diary/querySnackRecords", { params: data });
   },
   // 创建零食信息
@@ -37,7 +37,7 @@ export default {
     return await request.post("/diary/createExerciseRecords", data);
   },
   // 查询锻炼信息
-  async queryExerciseRecords(data: diaryQueryByDays) {
+  async queryExerciseRecords(data: DiaryQueryByDays) {
     return await request.get("/diary/queryExerciseRecords", { params: data });
   },
 };

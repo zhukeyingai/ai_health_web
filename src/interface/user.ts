@@ -26,3 +26,8 @@ export interface DailyWeight {
   user_id: string;
   weight: number;
 }
+
+export interface Weight {
+  date: string;
+  weight: number;
+}

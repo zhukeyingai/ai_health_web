@@ -58,7 +58,7 @@ export interface ExerciseRequest {
   amount: number;
 }
 
-export interface diaryQueryByDays {
+export interface DiaryQueryByDays {
   user_id: string;
   days: number;
 }

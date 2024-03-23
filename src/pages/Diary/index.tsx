@@ -6,7 +6,7 @@ import {
   MealResponse,
   MealGroupedByDate,
   SnackRecord,
-  diaryQueryByDays,
+  DiaryQueryByDays,
   ExerciseResponse,
 } from "../../interface/diary";
 import Meals from "./source/meals";
@@ -30,7 +30,7 @@ const Diary: React.FC = () => {
 
   const queryMealRecords = (days: number) => {
     if (!userId) return;
-    const params: diaryQueryByDays = {
+    const params: DiaryQueryByDays = {
       user_id: userId,
       days,
     };
@@ -64,7 +64,7 @@ const Diary: React.FC = () => {
 
   const querySnackRecords = (days: number) => {
     if (!userId) return;
-    const params: diaryQueryByDays = {
+    const params: DiaryQueryByDays = {
       user_id: userId,
       days,
     };
@@ -82,7 +82,7 @@ const Diary: React.FC = () => {
 
   const queryExerciseRecords = (days: number) => {
     if (!userId) return;
-    const params: diaryQueryByDays = {
+    const params: DiaryQueryByDays = {
       user_id: userId,
       days,
     };
