@@ -54,6 +54,7 @@ const Home: React.FC = () => {
   const onSuccess = (id: string) => {
     setShowWeightModal(false);
     queryWeight(id);
+    queryWeightList();
   };
 
   return (
