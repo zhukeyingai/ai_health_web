@@ -39,6 +39,10 @@ pnpm run dev
 pnpm build
 ```
 
+## 插件
+
+- `https://www.wangeditor.com/v5/editor-config.html#placeholder`
+
 ## 小记
 
 - 先安装 pnpm
@@ -75,3 +79,7 @@ pnpm build
   - `pnpm i antd-img-crop`
 - 安装lodash
   - `pnpm i lodash-es @types/lodash-es`
+- 安装富文本编辑器
+  - `pnpm i @wangeditor/editor @wangeditor/editor-for-react`
+- 安装HTML清理库
+  - `pnpm i dompurify @types/dompurify`

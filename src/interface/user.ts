@@ -31,3 +31,9 @@ export interface Weight {
   date: string;
   weight: number;
 }
+
+export interface User {
+  avatar_url?: string;
+  user_name: string;
+  user_id: string;
+}

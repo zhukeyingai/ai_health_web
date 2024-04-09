@@ -285,3 +285,20 @@ a:hover {
 .ant-slider .ant-slider-handle:focus::after {
   box-shadow: 0 0 0 4px #9ad14b;
 }
+
+/* tabs */
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #9ad14b;
+}
+
+.ant-tabs .ant-tabs-tab:hover {
+  color: #b2d482;
+}
+
+.ant-tabs .ant-tabs-tab-btn:focus:not(:focus-visible) {
+  color: #9ad14b;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+  background: #9ad14b;
+}
