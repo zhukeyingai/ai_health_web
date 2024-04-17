@@ -6,7 +6,9 @@ import homeApi from "../../services/home";
 import WeightModal from "./weightModal";
 import { EChartRequest } from "../../interface/home";
 import { Weight } from "../../interface/user";
-import WeightEChart from "./ECahrts/weightEChart";
+import WeightEChart from "./components/weightEChart";
+import HeatEChart from "./components/heatEChart";
+import Analysis from "./components/analysis";
 
 const { queryDailyWeight } = authApi;
 const { queryWeightAllDays } = homeApi;
@@ -58,12 +60,16 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="h-full">
       <WeightEChart
         weightList={weightList}
         loading={weightLoading}
         onChangeDays={setWeightDays}
       />
+      <div className="h-[calc(100%-404px)] mt-6 flex">
+        <HeatEChart />
+        <Analysis />
+      </div>
       {showWeightModal && <WeightModal onSuccess={onSuccess} />}
     </div>
   );

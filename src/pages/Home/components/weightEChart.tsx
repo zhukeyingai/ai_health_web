@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useMemo } from "react";
 import { EChartsOption } from "echarts";
 import EChartsReact from "echarts-for-react";
 import CommonCard from "../../../components/CommonCard";
