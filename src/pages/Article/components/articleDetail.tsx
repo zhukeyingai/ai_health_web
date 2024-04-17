@@ -34,7 +34,7 @@ const ArticleDetail: React.FC<Props> = memo(
         onClick: () => onBackToList(),
       },
       {
-        title: curArticle?.title || "",
+        title: curArticle?.title ? <div className="truncate w-[300px]">{curArticle?.title}</div> : "",
       },
     ];
 
@@ -100,7 +100,7 @@ const ArticleDetail: React.FC<Props> = memo(
           />
           <Divider />
           <div
-            className="h-[calc(100%-257px)] overflow-auto"
+            className="h-[calc(100%-265px)] overflow-auto"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
           <div className="absolute bottom-0 left-2 flex my-3">
