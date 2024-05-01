@@ -13,6 +13,7 @@ export enum SportKey {
 export interface Food {
   foodName: string;
   amount: number;
+  heat?: number;
 }
 
 export interface MealRequest {
@@ -66,6 +67,7 @@ export interface DiaryQueryByDays {
 export interface Sport {
   sport: string;
   amount: number;
+  heat?: number;
 }
 
 export interface Sports {

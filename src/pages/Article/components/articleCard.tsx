@@ -30,7 +30,7 @@ const ArticleCard: React.FC<Props> = memo(({ data, onCLick, onRemove }) => {
   return (
     <div
       key={article_id}
-      className="overflow-hidden cursor-pointer rounded-lg bg-[#fef5e7] hover:shadow-md hover:transition-all"
+      className="overflow-hidden cursor-pointer rounded-lg bg-[#f1f8ea] hover:shadow-md hover:transition-all"
       onClick={onCLick}
     >
       <div className="flex w-full justify-between items-center">

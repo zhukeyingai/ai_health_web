@@ -66,7 +66,7 @@ const Info: React.FC = () => {
         {userId && userInfo && (
           <DetailProfile userId={userId} userInfo={userInfo} />
         )}
-        <EnergyBurned />
+        {userInfo && <EnergyBurned bmr={userInfo.bmr} />}
         <Target />
       </div>
     </Spin>

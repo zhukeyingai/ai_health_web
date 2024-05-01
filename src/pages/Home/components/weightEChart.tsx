@@ -84,7 +84,7 @@ const WeightEChart: React.FC<Props> = memo(
       <CommonCard className="min-w-[900px]">
         <div className="flex items-center justify-between pl-[18px] pr-[12px] my-2">
           <div className="text-[15px] font-medium flex items-center">
-            <div className="w-3 h-3 bg-sky-300 rounded-full mr-3"></div>
+            <div className="w-3 h-3 bg-sky-300 rounded-full mr-3"/>
             <div>重量</div>
           </div>
           <Select

@@ -4,7 +4,7 @@ import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import { RequiredValidator } from "../../../common/utils/validator";
 import { SnackRequest } from "../../../interface/diary";
 import diaryApi from "../../../services/diary";
-import { amountOptions } from "../constant";
+import { amountOptions } from "../../../constant/amountOptions";
 
 const { createSnackRecords } = diaryApi;
 const FormItem = Form.Item;

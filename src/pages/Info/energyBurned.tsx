@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Radio, Input, Tooltip, Select, Switch } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import type { RadioChangeEvent } from "antd";
@@ -9,7 +9,11 @@ import { ActivityLevelOptions } from "../../constant/infoSetting";
 const RadioGroup = Radio.Group;
 const SelectOption = Select.Option;
 
-const EnergyBurned: React.FC = () => {
+interface Props {
+  bmr: number;
+}
+
+const EnergyBurned: React.FC<Props> = memo(({ bmr }) => {
   const [showCustomInput, setShowCustomInput] = useState<boolean>(false);
 
   const onReset = () => {
@@ -47,7 +51,7 @@ const EnergyBurned: React.FC = () => {
             <Radio className="text-xs mr-6" value="defalut">
               默认
               {!showCustomInput && (
-                <span className="ml-2 text-xs">1508 kcal</span>
+                <span className="ml-2 text-xs">{bmr} kcal</span>
               )}
             </Radio>
           </Tooltip>
@@ -81,9 +85,7 @@ const EnergyBurned: React.FC = () => {
       </PieceContent>
       <div className="h-[65px] bg-[#b9d7be] my-4 rounded-lg flex items-center justify-center">
         <div className="text-base font-semibold">
-          <span>燃烧的总能量（TDEE）= </span>
-          <span>1508</span>
-          <span> kcal</span>
+          <span>燃烧的总能量（TDEE）= {bmr} kcal</span>
         </div>
       </div>
       <div className="flex flex-col w-[450px] mr-5">
@@ -103,6 +105,6 @@ const EnergyBurned: React.FC = () => {
       </PieceContent>
     </CommonCard>
   );
-};
+});
 
 export default EnergyBurned;
