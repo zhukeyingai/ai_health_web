@@ -12,6 +12,7 @@ export interface BaseInfo {
 }
 
 export interface UserInfo extends BaseInfo {
+  bmr: number;
   email: string;
   password: string;
   token?: string;

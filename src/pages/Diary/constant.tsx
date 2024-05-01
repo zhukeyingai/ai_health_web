@@ -1,4 +1,4 @@
-import { MealTime, SportKey } from "../../interface/diary";
+import { SportKey } from "../../interface/diary";
 // normal exercise
 import Bike from "../../assets/exerciseIcon/bike.svg";
 import Dance from "../../assets/exerciseIcon/dance.svg";
@@ -33,20 +33,6 @@ import Treadmill from "../../assets/exerciseIcon/treadmill.svg";
 import Kettlebell from "../../assets/exerciseIcon/kettlebell.svg";
 import Grips from "../../assets/exerciseIcon/grips.svg";
 import Yoga from "../../assets/exerciseIcon/yoga.svg";
-
-export const MealItem = {
-  [MealTime.breakfast]: "早餐",
-  [MealTime.lunch]: "午餐",
-  [MealTime.dinner]: "晚餐",
-};
-
-export const amountOptions = [
-  { value: 1, label: "特别少" },
-  { value: 2, label: "较少" },
-  { value: 3, label: "一般" },
-  { value: 4, label: "较多" },
-  { value: 5, label: "特别多" },
-];
 
 export const amountTagColors = ["green", "cyan", "blue", "volcano", "red"];
 

@@ -7,9 +7,9 @@ import {
   normalExerciseList,
   ballGamesList,
   gymList,
-  amountOptions,
   SportLabeLMap,
 } from "../constant";
+import { amountOptions } from "../../../constant/amountOptions";
 
 const { createExerciseRecords } = diaryApi;
 

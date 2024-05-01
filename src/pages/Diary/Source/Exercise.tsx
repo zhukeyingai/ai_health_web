@@ -2,16 +2,12 @@ import { useState } from "react";
 import { Dropdown, Empty, Button, Tag, Tooltip } from "antd";
 import type { MenuProps } from "antd";
 import { MoreOutlined } from "@ant-design/icons";
-import {
-  SportLabeLMap,
-  amountOptions,
-  amountTagColors,
-  genSubTitle,
-} from "../constant";
+import { SportLabeLMap, amountTagColors, genSubTitle } from "../constant";
 import ExerciseSvg from "../../../assets/exercise.svg";
 import CommonCard from "../../../components/CommonCard";
 import ExerciseModal from "../components/exerciseModal";
 import { ExerciseResponse } from "../../../interface/diary";
+import { amountOptions } from "../../../constant/amountOptions";
 
 interface ExerciseProps {
   userId?: string;
@@ -102,7 +98,14 @@ const Exercise: React.FC<ExerciseProps> = ({
                             return curSport ? (
                               <Tooltip
                                 key={m.sport}
-                                title={`运动时长：${curOption?.label ?? "未知"}`}
+                                title={
+                                  <>
+                                    <div>
+                                      运动时长：{curOption?.label ?? "未知"}
+                                    </div>
+                                    <div>燃烧热量：{m.heat} kcal</div>
+                                  </>
+                                }
                               >
                                 <Tag
                                   className="cursor-pointer flex items-center py-1"

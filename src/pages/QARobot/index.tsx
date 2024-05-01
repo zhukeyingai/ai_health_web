@@ -1,24 +1,12 @@
-import { useState, useCallback } from "react";
-import { debounce } from "lodash-es";
-import PageLayout from "../../layout/PageLayout";
+import HistoryList from "./HistoryList";
+import ModelChat from "./ModelChat";
 
 const QARobot: React.FC = () => {
-  const [filterSearch, setFilterSearch] = useState<string>("");
-
-  const debounceSearch = useCallback(
-    debounce((e) => setFilterSearch(e.target.value?.trim()), 300),
-    []
-  );
-
   return (
-    <>
-      <PageLayout
-        onSearch={debounceSearch}
-        content={
-          <div>111</div>
-        }
-      />
-    </>
+    <div className="flex h-full w-full gap-6">
+      <HistoryList />
+      <ModelChat />
+    </div>
   );
 };
 

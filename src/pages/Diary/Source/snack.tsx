@@ -11,7 +11,8 @@ import Snack5 from "../../../assets/snack_5.svg";
 import CommonCard from "../../../components/CommonCard";
 import { SnackRecord } from "../../../interface/diary";
 import SnackModal from "../components/snackModal";
-import { amountOptions, genSubTitle } from "../constant";
+import {genSubTitle } from "../constant";
+import { amountOptions } from "../../../constant/amountOptions";
 
 interface SnackProps {
   userId?: string;
@@ -101,7 +102,7 @@ const Snack: React.FC<SnackProps> = ({ userId, onRefresh, snackList }) => {
                   {date}
                 </div>
                 <div className="flex flex-wrap">
-                  {foods.map(({ foodName, amount }) => {
+                  {foods.map(({ foodName, amount, heat }) => {
                     const matchedData = amountOptions.find(
                       (i) => i.value === amount
                     );
@@ -113,8 +114,11 @@ const Snack: React.FC<SnackProps> = ({ userId, onRefresh, snackList }) => {
                         {genSnackIcon(amount)}
                         <div className="ml-2">
                           <div className="font-medium">{foodName}</div>
-                          <div className="text-[13px] mt-1 text-[#a6cf60]">
-                            {matchedData ? matchedData.label : "未知"}
+                          <div className="text-[13px] mt-1 ">
+                            <span className="text-[#a6cf60] mr-1">
+                              {matchedData ? matchedData.label : "未知"}
+                            </span>
+                            <span className="text-[#b1b6aa]">{heat} kcal</span>
                           </div>
                         </div>
                       </div>

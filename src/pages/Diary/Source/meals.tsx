@@ -9,7 +9,9 @@ import DinnerSvg from "../../../assets/dinner.svg";
 import CommonCard from "../../../components/CommonCard";
 import MealModal from "../components/mealModal";
 import { MealTime, MealGroupedByDate } from "../../../interface/diary";
-import { MealItem, amountOptions, genSubTitle } from "../constant";
+import { genSubTitle } from "../constant";
+import { amountOptions } from "../../../constant/amountOptions";
+import { MealItem } from "../../../constant/mealItem";
 
 interface MealsProps {
   userId?: string;
@@ -99,8 +101,11 @@ const Meals: React.FC<MealsProps> = ({ userId, onRefresh, meals }) => {
                           return (
                             <div key={`${m.foodName}_${m.amount}`}>
                               <span className="mr-1">{m.foodName}</span>
-                              <span className="text-[#a6cf60]">
+                              <span className="text-[#a6cf60] mr-1">
                                 【{matchedItem ? matchedItem.label : "未知"}】
+                              </span>
+                              <span className="text-[#b1b6aa]">
+                                {m.heat} kcal
                               </span>
                             </div>
                           );

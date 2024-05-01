@@ -9,7 +9,8 @@ import {
 import { RequiredValidator } from "../../../common/utils/validator";
 import { MealTime, MealRecord } from "../../../interface/diary";
 import diaryApi from "../../../services/diary";
-import { MealItem, amountOptions } from "../constant";
+import { amountOptions } from "../../../constant/amountOptions";
+import { MealItem } from "../../../constant/mealItem";
 
 const { createMealRecords } = diaryApi;
 const FormItem = Form.Item;

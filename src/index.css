@@ -302,3 +302,29 @@ a:hover {
 .ant-tabs .ant-tabs-ink-bar {
   background: #9ad14b;
 }
+
+/* calender */
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-calendar-date,
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-calendar-date-today {
+  background: #e9f6dc;
+}
+
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-calendar-date-today {
+  border-color: #9ad14b;
+}
+
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-cell-selected .ant-picker-calendar-date .ant-picker-calendar-date-value,
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-cell-selected:hover .ant-picker-calendar-date .ant-picker-calendar-date-value,
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-cell-selected .ant-picker-calendar-date-today .ant-picker-calendar-date-value,
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-cell-selected:hover .ant-picker-calendar-date-today .ant-picker-calendar-date-value {
+  color: #9ad14b;
+}
+
+/* Pagination */
+.ant-pagination .ant-pagination-item-active a {
+  color: #9ad14b;
+}
+
+.ant-pagination .ant-pagination-item-active {
+  border-color: #9ad14b;
+}
